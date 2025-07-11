@@ -1,0 +1,105 @@
+body {
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  font-family: 'Baloo 2', cursive;
+  background: linear-gradient(135deg, #f5e6fa, #e6dafb);
+  height: 100vh;
+  color: #5f3f6b;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.flowers-container { position: absolute; width: 100%; height: 100%; top: 0; left: 0; pointer-events: none; }
+.flower {
+  position: absolute;
+  top: calc(20% + 60vh * var(--i) / 5);
+  left: calc(10% + 80vw * var(--i) / 5);
+  width: 60px;
+  height: 60px;
+  animation: float 8s ease-in-out infinite;
+  animation-delay: calc(-2s * var(--i));
+}
+.flower::before,
+.flower::after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: #e2c4f4;
+  border-radius: 50%;
+}
+.flower::before {
+  transform: translate(-50%, -50%);
+  top: 50%;
+  left: 50%;
+  box-shadow:
+    0 -30px 0 #f0c2f8,
+    26px -15px 0 #d6aef2,
+    26px 15px 0 #e9bdf6,
+    0 30px 0 #f0c2f8,
+   -26px 15px 0 #d6aef2,
+   -26px -15px 0 #e9bdf6;
+}
+.flower::after {
+  width: 30px;
+  height: 30px;
+  background-color: #f7e3fd;
+  top: calc(50% - 15px);
+  left: calc(50% - 15px);
+}
+
+@keyframes float {
+  0%, 100%   { transform: translateY(0) rotate(0deg); }
+  50%        { transform: translateY(-20px) rotate(10deg); }
+}
+
+.content {
+  text-align: center;
+  z-index: 1;
+  max-width: 80%;
+}
+
+.typing-text {
+  font-family: 'Baloo 2', cursive;
+  font-size: 3.5rem;
+  white-space: nowrap;
+  overflow: hidden;
+  border-right: 3px solid #5f3f6b;
+  width: 0;
+  color: #6b4b8f;
+  display: inline-block;
+  margin: 0 auto;
+}
+
+.subtitle {
+  margin-top: 1rem;
+  font-family: 'Baloo 2', cursive;
+  font-size: 2rem;
+  color: #8362aa;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.8s ease-in;
+}
+
+.subtitle.visible {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Сердечки по клику */
+.floating-heart {
+  position: absolute;
+  font-size: 3rem;
+  color: #ffbbc6;
+  animation: rise 1.5s ease-out forwards;
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+}
+
+@keyframes rise {
+  0%   { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+  100% { opacity: 0; transform: translate(-50%, -150%) scale(1.8); }
+}
